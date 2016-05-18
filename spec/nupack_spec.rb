@@ -27,4 +27,9 @@ describe Nupack::MARKUPS do
     }
     expect(Nupack::MARKUPS).to eq(markups)
   end
+
+  it 'should access different markup types' do
+    expect(Nupack::MARKUPS[:flat]).to eq(0.05)
+    expect(Nupack::MARKUPS[:person]).to eq(0.012)
+  end
 end
