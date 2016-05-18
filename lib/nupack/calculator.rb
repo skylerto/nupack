@@ -23,7 +23,7 @@ module Nupack
       [
         project.cost,
         flat = cost(project.cost, :flat),
-        cost(flat, :person),
+        cost(flat, :person, project.people),
         cost(flat, project.type)
       ].reduce(:+).round(2)
     end
