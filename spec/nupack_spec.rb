@@ -15,3 +15,16 @@ describe Nupack::Project do
     expect(project.type).to eq(:food)
   end
 end
+
+describe Nupack::MARKUPS do
+  it 'should define all the markup types' do
+    markups = {
+      flat: 0.05,
+      person: 0.012,
+      food: 0.13,
+      drugs: 0.075,
+      electronics: 0.02
+    }
+    expect(Nupack::MARKUPS).to eq(markups)
+  end
+end
