@@ -83,7 +83,7 @@ describe 'Nupack::Calculate#estimate' do
   it 'should give an estimate of a straigh forward project' do
     project = Nupack::Project.new(100)
     expected = 100 + (100 * 0.05)
-    expect(@calc.estimate(project)).to eq(expected)
+    expect(@calc.estimate(project)).to eq(expected.round(2))
   end
 
   it 'should give an estimate with of a food project' do
@@ -91,7 +91,7 @@ describe 'Nupack::Calculate#estimate' do
     flat = 100 + (100 * 0.05)
     food = flat * 0.13
     expected = flat + food
-    expect(@calc.estimate(project)).to eq(expected)
+    expect(@calc.estimate(project)).to eq(expected.round(2))
   end
 
   it 'should increase with number of people' do
@@ -99,7 +99,7 @@ describe 'Nupack::Calculate#estimate' do
     flat = 100 + (100 * 0.05)
     person = flat * (2 * 0.012)
     expected = flat + person
-    expect(@calc.estimate(project)).to eq(expected)
+    expect(@calc.estimate(project)).to eq(expected.round(2))
   end
 
   it 'should give an accurate estimate for given use case 1' do
