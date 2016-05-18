@@ -49,3 +49,24 @@ describe Nupack::Calculator do
     expect(calc.markups).to eq(markups)
   end
 end
+
+describe Nupack::Calculator.cost do
+  before :each do
+    @calc = Nupack::Calculator.new
+  end
+
+  it 'should calculate the cost given a price, and a symbol representing a markup' do
+    expected = 100 * 0.05
+    expect(@calc.cost(100, :flat)).to eq(expected)
+  end
+
+  it 'should give 0 if the symbol is not in the hash' do
+    expected = 0
+    expect(@calc.cost(100, :matz)).to eq(expected)
+  end
+  
+  it 'should give 0 if its not given a symbol' do
+    expected = 0
+    expect(@calc.cost(100, "matz")).to eq(expected)
+  end
+end
