@@ -10,7 +10,7 @@ module Nupack
     def cost(price, markup, people=nil)
       if price.is_a?(Numeric)
         if people && people.is_a?(Numeric)
-          return price * (people * @markups.fetch(:people, 0))
+          return price * (people * @markups.fetch(:person, 0))
         else
           return price * @markups.fetch(markup, 0)
         end
@@ -21,8 +21,7 @@ module Nupack
 
     def estimate(project)
       [
-        project.cost,
-        flat = cost(project.cost, :flat),
+        flat = project.cost + cost(project.cost, :flat),
         cost(flat, :person, project.people),
         cost(flat, project.type)
       ].reduce(:+).round(2)
