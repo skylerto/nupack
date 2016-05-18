@@ -33,3 +33,19 @@ describe Nupack::MARKUPS do
     expect(Nupack::MARKUPS[:person]).to eq(0.012)
   end
 end
+
+describe Nupack::Calculator do
+  it 'should create a new calculator with markups=Nupack::MARKUPS by default' do
+    calc = Nupack::Calculator.new
+    expect(calc.markups).to eq(Nupack::MARKUPS)
+  end
+
+  it 'should create a new calculator with the passed markup hash' do
+    markups = {
+      person: 0.1,
+      flat: 0.5
+    }
+    calc = Nupack::Calculator.new(markups)
+    expect(calc.markups).to eq(markups)
+  end
+end
