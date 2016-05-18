@@ -8,21 +8,17 @@ module Nupack
     end
 
     def cost(price, markup, people=nil)
-      if price.is_a?(Numeric)
-        if people && people.is_a?(Numeric)
-          return price * (people * @markups.fetch(:person, 0))
-        else
-          return price * @markups.fetch(markup, 0)
-        end
-      else
-       return 0
-      end
+      price.is_a?(Numeric) ? price * @markups.fetch(markup, 0) : 0
+    end
+
+    def labour(price, amount_people)
+      amount_people.is_a?(Numeric) ? price * (amount_people * @markups.fetch(:person, 0)) : 0
     end
 
     def estimate(project)
       [
         flat = project.cost + cost(project.cost, :flat),
-        cost(flat, :person, project.people),
+        labour(flat, project.people),
         cost(flat, project.type)
       ].reduce(:+).round(2)
     end
