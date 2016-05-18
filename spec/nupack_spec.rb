@@ -89,8 +89,9 @@ describe 'Nupack::Calculate#estimate' do
   it 'should give an estimate with of a food project' do
     project = Nupack::Project.new(100, 1, "food")
     flat = 100 + (100 * 0.05)
+    person = flat * 0.012
     food = flat * 0.13
-    expected = flat + food
+    expected = flat + person + food
     expect(@calc.estimate(project)).to eq(expected.round(2))
   end
 
