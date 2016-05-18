@@ -75,3 +75,52 @@ describe 'Nupack::Calculator#cost' do
     expect(@calc.cost("Yukihiro", "Matsumoto")).to eq(expected)
   end
 end
+
+describe 'Nupack::Calculate#estimate' do
+  before :each do
+    @calc = Nupack::Calculator.new
+  end
+  it 'should give an estimate of a straigh forward project' do
+    project = Nupack::Project.new(100)
+    expected = 100 + (100 * 0.05)
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+
+  it 'should give an estimate with of a food project' do
+    project = Nupack::Project.new(100, 1, "food")
+    flat = 100 + (100 * 0.05)
+    food = flat * 0.13
+    expected = flat + food
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+
+  it 'should increase with number of people' do
+    project = Nupack::Project.new(100, 2)
+    flat = 100 + (100 * 0.05)
+    person = flat * (2 * 0.012)
+    expected = flat + person
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+
+  it 'should give an accurate estimate for given use case 1' do
+    pending('a good implementation')
+
+    expected = 1591.58
+    project = Nupack::Project.new(1299, 3, "food")
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+  it 'should give an accurate estimate for given use case 2' do
+    pending('a good implementation')
+
+    expected = 6199.81
+    project = Nupack::Project.new(5432.00, 1, "drugs")
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+  it 'should give an accurate estimate for given use case 3' do
+    pending('a good implementation')
+
+    expected = 13707.63
+    project = Nupack::Project.new(12456.95, 4, "books")
+    expect(@calc.estimate(project)).to eq(expected)
+  end
+end
