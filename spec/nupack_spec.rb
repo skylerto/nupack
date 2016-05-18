@@ -69,4 +69,9 @@ describe Nupack::Calculator.cost do
     expected = 0
     expect(@calc.cost(100, "matz")).to eq(expected)
   end
+
+  it 'should give 0 if the price is not a valid number' do
+    expected = 0
+    expect(@calc.cost("Yukihiro", "Matsumoto")).to eq(expected)
+  end
 end
