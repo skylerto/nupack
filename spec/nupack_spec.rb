@@ -50,7 +50,7 @@ describe Nupack::Calculator do
   end
 end
 
-describe Nupack::Calculator.cost do
+describe 'Nupack::Calculator.cost' do
   before :each do
     @calc = Nupack::Calculator.new
   end
