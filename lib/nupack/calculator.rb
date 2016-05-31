@@ -23,10 +23,8 @@ module Nupack
       ].reduce(:+).round(2)
     end
 
-    private
-
     def cost_per_amount(price, amount, markup)
-      
+      price.is_a?(Numeric) ? price * @markups.fetch(markup, 0) * amount : 0
     end
   end
 end
