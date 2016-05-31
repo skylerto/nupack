@@ -12,9 +12,10 @@ module Nupack
     end
 
     def estimate(project)
+      flat = project.cost + cost(project.cost, :flat)
       [
-        flat = project.cost + cost(project.cost, :flat),
-        cost_per_amount(flat,:person, project.people),
+        flat,
+        cost_per_amount(flat, :person, project.people),
         cost(flat, project.type)
       ].reduce(:+).round(2)
     end
