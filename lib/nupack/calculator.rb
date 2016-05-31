@@ -7,7 +7,7 @@ module Nupack
       @markups = markups
     end
 
-    def cost(price, markup, people=nil)
+    def cost(price, markup)
       price.is_a?(Numeric) ? price * @markups.fetch(markup, 0) : 0
     end
 
@@ -21,6 +21,12 @@ module Nupack
         labour(flat, project.people),
         cost(flat, project.type)
       ].reduce(:+).round(2)
+    end
+
+    private
+
+    def cost_per_amount(price, amount, markup)
+      
     end
   end
 end

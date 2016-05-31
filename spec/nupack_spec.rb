@@ -121,3 +121,10 @@ describe 'Nupack::Calculate#estimate' do
     expect(@calc.estimate(project)).to eq(expected)
   end
 end
+
+describe 'Nupack::Calculator#cost_per_amount' do
+  it 'should give back the desired amount per person' do
+    expected = 100 + (100 * (0.012 * 2))
+    expect(@calc.cost_per_amount(100, :person, 2)).to eq(expected)
+  end
+end
